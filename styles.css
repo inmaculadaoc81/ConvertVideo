@@ -166,3 +166,18 @@
     aspect-ratio:4/3;
   }
 }
+
+/* Formatos sin iconos decorativos */
+.format-icon { display:none !important; }
+.format-card svg,
+.formats-grid .format-card > svg { display:none !important; }
+
+/* Indicación individual en cada tarifa */
+.vhs-price-note{
+  margin:8px 0 10px;
+  font-size:12px;
+  line-height:1.3;
+  color:#555;
+  text-align:center;
+}
+.vhs-price-note strong{font-weight:800;}
