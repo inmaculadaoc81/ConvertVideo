@@ -18,14 +18,16 @@
 <header class="header">
 <div class="wrap nav">
   <a href="#inicio"><img class="logo" src="/assets/logo-convertvideo.png" alt="ConvertVideo"></a>
-  <nav class="links">
+  <nav class="links" id="mainMenu">
     <a href="#formatos">Formatos</a>
     <a href="#precios">Precios</a>
     <a href="#por-que">Por qué digitalizar</a>
     <a href="#cita">Pedir cita</a>
+    <a href="#sobre-digitalizacion">Guía</a>
     <a href="#contacto">Contacto</a>
     <a class="navcall" href="tel:+34910054711">Atención Telefónica 24 horas 365 días</a>
   </nav>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainMenu">Menú</button>
 </div>
 </header>
 
@@ -203,6 +205,23 @@
 </div>
 </section>
 
+<section class="seo-content" id="sobre-digitalizacion">
+<div class="wrap">
+  <div class="kicker">Digitalización de cintas en Madrid</div>
+  <h2 class="title">Por qué conviene digitalizar tus cintas antes de que sea tarde</h2>
+
+  <div class="seo-text">
+    <p>Las cintas VHS, Beta, Video8, Hi8, MiniDV y HDV se deterioran con el paso del tiempo: la cinta magnética pierde calidad, se desmagnetiza y, en algunos casos, se vuelve quebradiza. A eso se suma un problema práctico cada vez más habitual: encontrar un reproductor en buen estado para verlas es cada vez más difícil. Cuanto más se retrase la digitalización, mayor es el riesgo de perder contenido que no se puede recuperar.</p>
+
+    <p>En <strong>ConvertVideo</strong> convertimos tus cintas a formatos actuales (DVD, USB o MP4) para que puedas volver a verlas sin depender de un reproductor antiguo. El precio por cinta baja cuanto mayor es el volumen, y también digitalizamos otros soportes como CD, DVD, Super 8, cassette o negativos bajo consulta.</p>
+
+    <p>Si no sabes cuántas cintas tienes exactamente o qué formato es cada una, tráelas o solicita recogida y las revisamos contigo antes de confirmar el presupuesto.</p>
+
+    <p><small>ConvertVideo es un servicio independiente de digitalización de vídeo y audio en Madrid.</small></p>
+  </div>
+</div>
+</section>
+
 <section class="faq">
 <div class="wrap">
   <div class="kicker">Preguntas frecuentes</div>
@@ -305,7 +324,7 @@ createChat({
  const apply=()=>{
    const root=document.querySelector('#n8n-chat'); if(!root)return;
    const t=root.querySelector('.chat-window-toggle,[class*="chat-window-toggle"]');
-   const w=root.querySelector('.chat-window,[class*="chat-window"]');
+   const w=root.querySelector('.chat-window:not([class*="toggle"]),[class*="chat-window"]:not([class*="toggle"])');
    const mobile=matchMedia('(max-width:600px)').matches;
 
    if(t){
@@ -313,6 +332,7 @@ createChat({
      t.style.setProperty('right',mobile?'16px':'22px','important');
      t.style.setProperty('bottom','96px','important');
      t.style.setProperty('z-index','10060','important');
+     t.style.setProperty('border','1px solid #fff','important');
    }
 
    if(w){
@@ -337,6 +357,17 @@ createChat({
  };
  boot();
 })();
+
+const menuBtn=document.getElementById('menuBtn');
+const mainMenu=document.getElementById('mainMenu');
+menuBtn?.addEventListener('click',()=>{
+  const open=mainMenu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded',open?'true':'false');
+});
+mainMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mainMenu.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+}));
 
 const form=document.getElementById('contact-form');
 const statusEl=document.getElementById('form-status');
